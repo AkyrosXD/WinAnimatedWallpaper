@@ -126,31 +126,35 @@ end;
 //
 // the proper way is to check if ANY window is maximized but
 // this has many false-positives.
-function BackgroundThreadFn: DWORD; stdcall;
+// UPDATE 26/07/2021: I found a solution!!! A huge thank you to the person who wrote the code below:
+// https://gist.github.com/blewert/b6e7b11c565cf82e7d700c609f22d023
+function BackgroundThread: DWORD; stdcall;
 var
   winp: WINDOWPLACEMENT;
   currentWindow: HWND;
-  wallpaperWindow: HWND;
   appWindow: HWND;
+  bKeepPlaying: Boolean;
 begin
-  wallpaperWindow := TAnimatedWallpaper.GetWallpaperWindowHandle;
   appWindow := ApplicationHWND;
   while Assigned(TAnimatedWallpaper.wpGif) do
   begin
-    currentWindow := GetForegroundWindow;
-    if (currentWindow <> wallpaperWindow) then
-    begin
-      if GetWindowPlacement(currentWindow, @winp) then
+    bKeepPlaying := True;
+    currentWindow := GetTopWindow(GetDesktopWindow);
+    repeat
+      currentWindow := GetWindow(currentWindow, GW_HWNDNEXT);
+      if IsWindowVisible(currentWindow) and GetWindowPlacement(currentWindow, @winp) and (winp.showCmd = SW_SHOWMAXIMIZED) then
       begin
-        if winp.showCmd = SW_SHOWMAXIMIZED then
-        begin
-          SendMessage(appWindow, WM_PAUSE, 0, 0);
-        end
-        else
-        begin
-          SendMessage(appWindow, WM_PLAY, 0, 0);
-        end;
+        bKeepPlaying := False;
+        Break;
       end;
+    until not Boolean(currentWindow);
+    if bKeepPlaying then
+    begin
+      SendMessage(appWindow, WM_PLAY, 0, 0);
+    end
+    else
+    begin
+      SendMessage(appWindow, WM_PAUSE, 0, 0);
     end;
     Sleep(200);
   end;
@@ -189,7 +193,7 @@ begin
     bPlaying := True;
     if bgThread = 0 then
     begin
-      bgThread := CreateThread(nil, 0, @BackgroundThreadFn, nil, 0, lpThreadId);
+      bgThread := CreateThread(nil, 0, @BackgroundThread, nil, 0, lpThreadId);
     end;
   end;
 end;
