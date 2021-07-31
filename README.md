@@ -9,7 +9,7 @@ WinAnimatedWallpaper is Windows application made in [Delphi](https://en.wikipedi
 **Your version of Windows must be Windows 8 or above. Otherwise the application will not work**.
 
 ## Download
-You can download the application from [here](https://github.com/AkyrosXD/WinAnimatedWallpaper/releases/tag/1.0.0.1). It is a single executable and nothing extra is required.
+You can download the application from [here](https://github.com/AkyrosXD/WinAnimatedWallpaper/releases/tag/1.0.0.0). It is a single executable and nothing extra is required.
 
 ## Usage
 - When you start the application, you should see the icon of the application in your system try (at the end of the taskbar)
