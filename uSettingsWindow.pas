@@ -113,7 +113,7 @@ end;
 
 procedure TSettingsWindow.miAboutClick(Sender: TObject);
 begin
-  MessageBox(0, 'Developed by AkyrosXD'#13#10'Icon by DefaultO'#13#10'Version: 1.0.0.1', 'About', MB_ICONINFORMATION);
+  MessageBox(0, 'Developed by AkyrosXD'#13#10'Icon by DefaultO', 'About', MB_ICONINFORMATION);
 end;
 
 procedure TSettingsWindow.OpenSettings(Sender: TObject);
