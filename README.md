@@ -1,7 +1,4 @@
 # WinAnimatedWallpaper
-<<<<<<< HEAD
- Set GIF images as desktop wallpapers
-=======
 
 ![Icon](./res/Icon.png)
 
@@ -37,4 +34,4 @@ You can download the application from [here](https://github.com/AkyrosXD/WinAnim
 
 ## Special thanks to:
 - [DefaultO](https://github.com/DefaultO) for the icon
->>>>>>> parent of 43f232a (Updated download link)
+ Set GIF images as desktop wallpapers
