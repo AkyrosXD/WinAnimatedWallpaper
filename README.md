@@ -34,4 +34,3 @@ You can download the application from [here](https://github.com/AkyrosXD/WinAnim
 
 ## Special thanks to:
 - [DefaultO](https://github.com/DefaultO) for the icon
- Set GIF images as desktop wallpapers
